@@ -82,88 +82,86 @@ class _CheckOutWidgetState extends State<CheckOutWidget> {
               _showSuccessfulDialog(context);
             }
           },
-          child: Container(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("Full Name"),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _fullNameController,
-                        decoration: const InputDecoration(
-                          hintText: 'Enter your name',
-                          border: OutlineInputBorder(),
-                          // You can add more decoration options here
-                        ),
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Full Name"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _fullNameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your name',
+                        border: OutlineInputBorder(),
+                        // You can add more decoration options here
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("Address"),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _addressController,
-                        decoration: const InputDecoration(
-                          hintText: 'Enter your address',
-                          border: OutlineInputBorder(),
-                          // You can add more decoration options here
-                        ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Address"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _addressController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your address',
+                        border: OutlineInputBorder(),
+                        // You can add more decoration options here
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("City"),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _cityController,
-                        decoration: const InputDecoration(
-                          hintText: 'Enter your city',
-                          border: OutlineInputBorder(),
-                          // You can add more decoration options here
-                        ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("City"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _cityController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your city',
+                        border: OutlineInputBorder(),
+                        // You can add more decoration options here
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("Phone"),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _phoneNumberController,
-                        decoration: const InputDecoration(
-                          hintText: 'Enter your phone',
-                          border: OutlineInputBorder(),
-                          // You can add more decoration options here
-                        ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Phone"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _phoneNumberController,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your phone',
+                        border: OutlineInputBorder(),
+                        // You can add more decoration options here
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              context.read<CreateOrderCubit>().create(
-                                  fullName: _fullNameController.text,
-                                  phone: _phoneNumberController.text,
-                                  city: _cityController.text,
-                                  address: _addressController.text);
-                            },
-                            child: const Text('Confirm Order')))
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 15),
+                  SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            context.read<CreateOrderCubit>().create(
+                                fullName: _fullNameController.text,
+                                phone: _phoneNumberController.text,
+                                city: _cityController.text,
+                                address: _addressController.text);
+                          },
+                          child: const Text('Confirm Order')))
+                ],
               ),
             ),
           ),

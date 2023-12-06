@@ -10,7 +10,7 @@ class CartRepository {
 
   CartRepository({required this.userRepository});
 
-  List<Cart> _carts = [];
+  final List<Cart> _carts = [];
 
   List<Cart> get cart => _carts;
 
@@ -43,9 +43,9 @@ class CartRepository {
           options: Options(
               headers: {"Authorization": "Bearer ${userRepository.token}"}));
       final items = Cart.fromMap(res.data['results']);
-      final _index = _carts.indexWhere((element) => element.id == items.id);
-      if (_index != -1) {
-        _carts[_index] = items;
+      final index = _carts.indexWhere((element) => element.id == items.id);
+      if (index != -1) {
+        _carts[index] = items;
       }
       return Right(items);
     } on DioException catch (e) {

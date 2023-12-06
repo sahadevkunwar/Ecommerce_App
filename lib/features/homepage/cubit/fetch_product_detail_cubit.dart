@@ -10,7 +10,11 @@ class FetchProductDetailCubit extends Cubit<CommonState> {
   FetchProductDetailCubit({required this.productRepository})
       : super(CommonInitialState());
 
+// Flag to indicate whether to fetch product details
+  // bool shouldFetchDetails = true;
+
   fetchProductDetails({required String productId}) async {
+    // if (shouldFetchDetails) {
     emit(CommonLoadingState());
     final res =
         await productRepository.fetchProductDetails(productId: productId);
@@ -18,5 +22,9 @@ class FetchProductDetailCubit extends Cubit<CommonState> {
       (error) => emit(CommonErrorState(message: error)),
       (data) => emit(CommonSuccessState<Product>(item: data)),
     );
+
+    // Reset the flag to avoid repeated fetching
+    // shouldFetchDetails = false;
+    // }
   }
 }

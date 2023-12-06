@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.only(left: 0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(60),
-                      child: Image.network(
-                        userRepo.user!.profile,
+                      child: Image.asset(
+                        'assets/images/empty_cart.png',
                         height: 50,
                         width: 50,
                         fit: BoxFit.cover,

@@ -66,7 +66,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
           child: BlocBuilder<FetchProductDetailCubit, CommonState>(
             builder: (context, state) {
               if (state is CommonErrorState) {
-                return Center(child: Text(state.message));
+                return Center(
+                  child: Text(state.message),
+                );
               } else if (state is CommonSuccessState<Product>) {
                 return Column(
                   children: [
@@ -126,14 +128,14 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(height: 15),
-                                  Text(
-                                    state.item.description,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
+                                  // const SizedBox(height: 15),
+                                  // Text(
+                                  //   state.item.description,
+                                  //   style: GoogleFonts.poppins(
+                                  //     fontSize: 14,
+                                  //     color: Colors.grey,
+                                  //   ),
+                                  // ),
                                   const SizedBox(height: 15),
                                 ],
                               ),
@@ -188,7 +190,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                 ),
               );
             } else {
-              return Container(height: 1);
+              return const SizedBox.shrink();
             }
           },
         ),

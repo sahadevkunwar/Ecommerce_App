@@ -6,15 +6,14 @@ class User {
   final String phone;
   final String address;
 
-  final String profile;
-  User( {
+  // final String profile;
+  User({
     required this.id,
     required this.name,
     required this.email,
     required this.phone,
     required this.address,
-
-    required this.profile,
+    // required this.profile,
   });
 
   Map<String, dynamic> toMap() {
@@ -24,8 +23,7 @@ class User {
       'email': email,
       'phone': phone,
       'address': address,
-
-      'profile': profile,
+      // 'profile': profile,
     };
   }
 
@@ -36,8 +34,7 @@ class User {
       email: map['email'],
       phone: map['phone'],
       address: map['address'],
-
-      profile: map['profile'] ?? "",
+      // profile: map['profile'] ?? "",
     );
   }
 }
