@@ -1,7 +1,7 @@
 import 'package:ecommerce_project/common/bloc/common_state.dart';
 import 'package:ecommerce_project/common/services/notification_services.dart';
 import 'package:ecommerce_project/features/splash/cubit/startup_cubit.dart';
-import 'package:ecommerce_project/presentation/screens/home_page.dart';
+import 'package:ecommerce_project/features/dashboard/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';

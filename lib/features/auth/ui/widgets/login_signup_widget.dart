@@ -6,12 +6,15 @@ class CustomTextFormField extends StatelessWidget {
       required this.controller,
       required this.hintText,
       required this.labelText,
-      required this.validator});
+      required this.validator,
+      this.maxLines,
+      });
 
   final TextEditingController controller;
   final String hintText;
   final String labelText;
   final String? Function(String? value) validator;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextFormField(
+            maxLines: maxLines,
             textInputAction: TextInputAction.next,
             controller: controller,
             decoration: InputDecoration(

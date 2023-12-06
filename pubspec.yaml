@@ -53,6 +53,9 @@ dependencies:
   flutter_local_notifications: ^15.1.0+1
   firebase_messaging: ^14.6.5
   flutter_facebook_auth: ^6.0.0
+  dropdown_button2: ^2.3.9
+  file_picker: ^6.1.1
+  cloudinary_public: ^0.21.0
 
 dev_dependencies:
   flutter_test:
