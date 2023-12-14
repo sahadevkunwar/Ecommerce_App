@@ -1,6 +1,12 @@
 import 'dart:async';
 
 
+import 'package:dio/dio.dart';
+
+
+import 'package:ecommerce_project/common/interceptor/authentication_interceptor.dart';
+
+
 import 'package:ecommerce_project/common/wrapper/notification_wrapper.dart';
 
 
@@ -97,9 +103,25 @@ class MyApp extends StatelessWidget {
 
         RepositoryProvider(
 
-          create: (context) =>
+          create: (context) => Dio()
 
-              ProductRepository(userRepository: context.read<UserRepository>()),
+            ..interceptors.add(
+
+              AuthInterceptor(
+
+                userRepository: context.read<UserRepository>(),
+
+              ),
+
+            ),
+
+        ),
+
+        RepositoryProvider(
+
+          create: (context) => ProductRepository(
+              userRepository: context.read<UserRepository>(),
+              dio: context.read<Dio>()),
 
         ),
 

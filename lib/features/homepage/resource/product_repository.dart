@@ -30,7 +30,16 @@ class ProductRepository {
   final UserRepository userRepository;
 
 
-  ProductRepository({required this.userRepository});
+  final Dio dio;
+
+
+  ProductRepository({
+
+    required this.dio,
+
+    required this.userRepository,
+
+  });
 
 
   final List<Product> _items = [];
@@ -75,19 +84,7 @@ class ProductRepository {
       }
 
 
-      final Dio dio = Dio();
-
-
-      final Map<String, dynamic> headers = {
-
-        "Authorization": "Bearer ${userRepository.token}",
-
-      };
-
-
       final res = await dio.get("${Constants.baseUrl}/products",
-
-          options: Options(headers: headers),
 
           queryParameters: {"page": _currentPage});
 
@@ -132,21 +129,9 @@ class ProductRepository {
 
     try {
 
-      final Dio dio = Dio();
-
-
-      final Map<String, dynamic> header = {
-
-        "Authorization": "Bearer ${userRepository.token}"
-
-      };
-
-
       final res = await dio.get(
 
         "${Constants.baseUrl}/products/$productId",
-
-        options: Options(headers: header),
 
       );
 
@@ -173,23 +158,11 @@ class ProductRepository {
 
     try {
 
-      final Dio dio = Dio();
-
-
-      final Map<String, dynamic> header = {
-
-        "Authorization": "Bearer ${userRepository.token}"
-
-      };
-
-
       final _ = dio.post(
 
         "${Constants.baseUrl}/cart",
 
         data: {"quantity": 1, "product": productId},
-
-        options: Options(headers: header),
 
       );
 
@@ -220,14 +193,12 @@ class ProductRepository {
     required String brand,
 
     required int price,
+
     required List<String> catagories,
 
   }) async {
 
     try {
-
-      final Dio dio = Dio();
-
 
       final cloudnary = CloudinaryPublic('dnwz1vyoq', 'ry1ukruq');
 
@@ -262,22 +233,13 @@ class ProductRepository {
       );
 
 
-      final Map<String, dynamic> header = {
+      final _ = await dio.post(
 
-        "Authorization": "Bearer ${userRepository.token}"
+        "${Constants.baseUrl}/products/create",
 
-      };
+        data: jsonEncode(product.toMap()),
 
-
-      final _ = await dio.post("${Constants.baseUrl}/products/create",
-
-          data: jsonEncode(product.toMap()),
-
-          options: Options(
-
-            headers: header,
-
-          ));
+      );
 
 
       return const Right(null);
