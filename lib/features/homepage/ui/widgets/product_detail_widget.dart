@@ -22,6 +22,7 @@ class ProductDetailWidget extends StatefulWidget {
 
 class _ProductDetailWidgetState extends State<ProductDetailWidget> {
   bool isLoading = false;
+  bool isButtonVisible = true; // New variable to track button visibility
 
   @override
   void initState() {
@@ -175,7 +176,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
             return false;
           },
           builder: (context, state) {
-            if (state) {
+            if (state && isButtonVisible) {
               return SafeArea(
                 child: Container(
                   height: 70,
@@ -183,6 +184,10 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                   padding: const EdgeInsets.all(10),
                   child: ElevatedButton(
                     onPressed: () {
+                      // Hide the button immediately
+                      setState(() {
+                        isButtonVisible = false;
+                      });
                       context.read<AddToCartCubit>().add(widget.productId);
                     },
                     child: const Text("+ Add to Cart"),
@@ -194,6 +199,48 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
             }
           },
         ),
+
+        // bottomNavigationBar: BlocBuilder<FetchProductDetailCubit, CommonState>(
+        //   builder: (context, state) {
+        //     if (state is CommonSuccessState<Product>) {
+        //       bool isInCart = state.item.isInCart;
+
+        //       if (!isInCart && isButtonVisible) {
+        //         return SafeArea(
+        //           child: Container(
+        //             height: 70,
+        //             color: Colors.white,
+        //             padding: const EdgeInsets.all(10),
+        //             child: ElevatedButton(
+        //               onPressed: () {
+        //                 // Hide the button immediately
+        //                 setState(() {
+        //                   isButtonVisible = false;
+        //                 });
+
+        //                 // Perform the add to cart action
+        //                 context.read<AddToCartCubit>().add(widget.productId);
+        //               },
+        //               child: const Text("+ Add to Cart"),
+        //             ),
+        //           ),
+        //         );
+        //       } else if (!isButtonVisible) {
+        //         return SafeArea(
+        //           child: Container(
+        //             height: 70,
+        //             color: Colors.white,
+        //             padding: const EdgeInsets.all(10),
+        //             child: const Center(
+        //                 child: Text("Product already added to cart")),
+        //           ),
+        //         );
+        //       }
+        //     }
+
+        //     return const SizedBox.shrink();
+        //   },
+        // ),
       ),
     );
   }
