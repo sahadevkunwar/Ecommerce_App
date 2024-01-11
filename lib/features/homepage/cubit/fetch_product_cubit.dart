@@ -13,7 +13,7 @@ class FetchProductCubit extends Bloc<ProductEvent, CommonState> {
       : super(CommonInitialState()) {
     on<FetchProductEvent>((event, emit) async {
       emit(CommonLoadingState());
-      final res = await productRepository.fetchProduct();
+      final res = await productRepository.fetchProduct(query: event.query);
       res.fold(
         (error) => emit(CommonErrorState(message: error)),
         (data) => emit(CommonSuccessState<List<Product>>(item: data)),
@@ -22,13 +22,13 @@ class FetchProductCubit extends Bloc<ProductEvent, CommonState> {
 
     on<RefreshProductEvent>((event, emit) async {
       emit(CommonLoadingState(showLoading: false));
-      final _ = await productRepository.fetchProduct();
+      final _ = await productRepository.fetchProduct(query: event.query);
       emit(CommonSuccessState<List<Product>>(item: productRepository.items));
     });
     on<LoadMoreProductEvent>(
       (event, emit) async {
         emit(CommonLoadingState(showLoading: false));
-        final _ = await productRepository.fetchProduct(isLoadMore: true);
+        final _ = await productRepository.fetchProduct(isLoadMore: true,query: event.query);
         emit(CommonSuccessState<List<Product>>(item: productRepository.items));
       },
       transformer: droppable(),

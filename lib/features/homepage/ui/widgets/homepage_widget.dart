@@ -12,7 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../common/cards/product_card.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key? key}) : super(key: key);
+  final TextEditingController searchController;
+  const HomePageWidget({Key? key,required this.searchController}) : super(key: key);
 
   @override
   State<HomePageWidget> createState() => _HomePageWidgetState();
@@ -48,14 +49,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       (notification.metrics.maxScrollExtent / 2) &&
                   _scrollController.position.userScrollDirection ==
                       ScrollDirection.reverse) {
-                context.read<FetchProductCubit>().add(LoadMoreProductEvent());
+                context.read<FetchProductCubit>().add(LoadMoreProductEvent(query: widget.searchController.text));
               }
               return false;
             },
             child: RefreshIndicator(
               onRefresh: () async {
                 _refreshCompleter = Completer<bool>();
-                context.read<FetchProductCubit>().add(RefreshProductEvent());
+                context.read<FetchProductCubit>().add(RefreshProductEvent(query: widget.searchController.text));
                 await _refreshCompleter.future;
               },
               child: ListView.builder(

@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ecommerce_project/common/bloc/common_state.dart';
 import 'package:ecommerce_project/common/constants.dart';
 import 'package:ecommerce_project/common/utils/snackbar_utils.dart';
 import 'package:ecommerce_project/features/auth/ui/widgets/login_signup_widget.dart';
-import 'package:ecommerce_project/features/dashboard/screens/home_page.dart';
+import 'package:ecommerce_project/features/dashboard/screens/dash_board_screen.dart';
 import 'package:ecommerce_project/features/homepage/cubit/add_product_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +65,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
             } else if (state is CommonSuccessState) {
               Navigator.of(context).pushAndRemoveUntil(
                   PageTransition(
-                    child: const HomePage(),
+                    child: const DashBoardScreen(),
                     type: PageTransitionType.fade,
                   ),
                   (route) => false);
@@ -226,7 +225,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 .toString()); // Add selected category to the tempCategory list
                           });
 
-                         // selectedCategoryValue = value.toString();
+                          // selectedCategoryValue = value.toString();
                         },
                         buttonStyleData: const ButtonStyleData(
                           padding: EdgeInsets.only(right: 8),
@@ -276,7 +275,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                       brand: _brandController.text,
                                       price: int.parse(_priceController.text),
                                       catagories: tempCategory,
-                                          
                                     );
                               }
                             },

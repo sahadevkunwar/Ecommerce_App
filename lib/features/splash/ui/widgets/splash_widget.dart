@@ -1,7 +1,7 @@
 import 'package:ecommerce_project/common/bloc/common_state.dart';
 import 'package:ecommerce_project/common/services/notification_services.dart';
+import 'package:ecommerce_project/features/dashboard/screens/dash_board_screen.dart';
 import 'package:ecommerce_project/features/splash/cubit/startup_cubit.dart';
-import 'package:ecommerce_project/features/dashboard/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
@@ -31,7 +31,8 @@ class _SplashWidgetState extends State<SplashWidget> {
             if (state.item.isLoggedIn) {
               Navigator.of(context).pushAndRemoveUntil(
                   PageTransition(
-                      child: const HomePage(), type: PageTransitionType.fade),
+                      child: const DashBoardScreen(),
+                      type: PageTransitionType.fade),
                   (route) => false);
             } else {
               Navigator.of(context).pushAndRemoveUntil(
